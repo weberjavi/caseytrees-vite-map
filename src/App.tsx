@@ -32,7 +32,7 @@ export default function App() {
             },
             trees: {
                     type: "vector",
-                    url: "pmtiles://https://raw.githubusercontent.com/weberjavi/caseytrees-map-demo/main/urban_forestry_street_trees.pmtiles",
+                    url: "pmtiles://https://raw.githubusercontent.com/weberjavi/caseytrees-vite-map/main/public/dc_trees.pmtiles",
                   },
           },
           layers: [
@@ -48,11 +48,12 @@ export default function App() {
             {
               id: "trees",
               source: "trees",
-              "source-layer": "Urban_Forestry_Street_Trees",
+              "source-layer": "dc_trees",
               type: "circle",
               paint: {
-                "circle-radius": 5,
+                "circle-radius": 3,
                 "circle-color": "#00dd00",
+                "circle-opacity": 0.5,
               }
             }
           ]
