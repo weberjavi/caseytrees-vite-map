@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import styles from "./map.module.css";
-import { Map } from "react-map-gl/maplibre";
+import { Layer, Map, Source } from "react-map-gl/maplibre";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Protocol } from "pmtiles";
 
 export default function App() {
   useEffect(() => {
-    const protocol =  new Protocol();
+    const protocol = new Protocol();
     maplibregl.addProtocol("pmtiles", protocol.tile);
     return () => {
       maplibregl.removeProtocol("pmtiles");
@@ -18,48 +18,31 @@ export default function App() {
     <div className={styles.mapContainer}>
       <Map
         initialViewState={{
-          longitude: -77.01047,
+          longitude: -77.05747,
           latitude: 38.91825,
-          zoom: 14,
+          zoom: 15.2,
         }}
-        mapStyle={{
-          version: 8,
-          sources: {
-            sample: {
-              type: "vector",
-              url:
-                "pmtiles://https://r2-public.protomaps.com/protomaps-sample-datasets/cb_2018_us_zcta510_500k.pmtiles"
-            },
-            trees: {
-                    type: "vector",
-                    url: "pmtiles://https://raw.githubusercontent.com/weberjavi/caseytrees-vite-map/main/public/dc_trees.pmtiles",
-                  },
-          },
-          layers: [
-            {
-              id: "zcta",
-              source: "sample",
-              "source-layer": "zcta",
-              type: "line",
-              paint: {
-                "line-color": "#999"
-              }
-            },
-            {
-              id: "trees",
-              source: "trees",
-              "source-layer": "dc_trees",
-              type: "circle",
-              paint: {
-                "circle-radius": 3,
-                "circle-color": "#00dd00",
-                "circle-opacity": 0.5,
-              }
-            }
-          ]
-        }}
+        mapStyle="https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json"
         mapLib={maplibregl}
-      />
+      >
+        <Source
+          id="trees"
+          type="vector"
+          url="pmtiles://https://raw.githubusercontent.com/weberjavi/caseytrees-vite-map/main/public/dc_trees.pmtiles"
+        >
+          <Layer
+            id="trees"
+            type="circle"
+            source="trees"
+            source-layer="dc_trees"
+            paint={{
+              "circle-radius": 3,
+              "circle-color": "#00dd00",
+              "circle-opacity": 0.3,
+            }}
+          />
+        </Source>
+      </Map>
     </div>
   );
 }
