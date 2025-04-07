@@ -24,6 +24,7 @@ export default function App() {
         }}
         mapStyle="https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json"
         mapLib={maplibregl}
+        scrollZoom={false}
       >
         <Source
           id="trees"
