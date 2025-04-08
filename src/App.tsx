@@ -38,7 +38,7 @@ export default function App() {
             source-layer="dc_trees"
             paint={{
               "circle-radius": 3,
-              "circle-color": "#00dd00",
+              "circle-color": "#A4D48C",
               "circle-opacity": 0.3,
             }}
           />
