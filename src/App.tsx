@@ -39,7 +39,7 @@ export default function App() {
             paint={{
               "circle-radius": 3,
               "circle-color": "#A4D48C",
-              "circle-opacity": 0.3,
+              "circle-opacity": 0.6,
             }}
           />
         </Source>
